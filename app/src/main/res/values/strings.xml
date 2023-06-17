@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PizzaDeliveryApp</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="error_message_no_connection">No connection</string>
+    <string name="error_message_service_unavailable">Service unavailable</string>
+    <string name="error_message_unknown_error">Unknown exception</string>
+</resources>
