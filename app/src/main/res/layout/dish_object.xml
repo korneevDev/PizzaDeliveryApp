@@ -33,15 +33,15 @@
 
     <github.mik0war.pizzadeliveryapp.core.CustomTextView
         android:id="@+id/descriptionView"
-        android:layout_width="245dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:singleLine="false"
         android:textColor="@color/light_gray"
         android:textSize="14sp"
-
+        android:layout_marginStart="22dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/objectName"
+        app:layout_constraintStart_toEndOf="@id/imageHolder"
         app:layout_constraintTop_toBottomOf="@id/objectName"
         tools:text="Жареная картошка шгнекенгшщшгненгшщшгненгшлорипмсапнгольтимпнготимпротимпрроjhgfchjklhgfdjkhvgklhjgghkj" />
 
