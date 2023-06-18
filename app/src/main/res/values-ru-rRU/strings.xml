@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PizzaDeliveryApp</string>
+    <string name="title_home">Меню</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_cart">Козина</string>
+    <string name="error_message_no_connection">Нет подключения</string>
+    <string name="error_message_service_unavailable">Сервис недоступен</string>
+    <string name="error_message_unknown_error">Неизвестная ошибка</string>
+    <string name="price_format">от %1$d р</string>
+    <string name="price_toast">Добавлено блюдо ценой %1$d р</string>
+</resources>

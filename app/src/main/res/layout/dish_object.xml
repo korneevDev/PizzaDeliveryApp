@@ -7,28 +7,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     app:layout_constraintDimensionRatio="1:1"
-    android:layout_margin="4dp">
+    android:layout_margin="16dp">
 
     <ImageView
         android:id="@+id/imageHolder"
-        android:layout_width="match_parent"
+        android:layout_width="135dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:background="@drawable/corner_item_style"
-        android:backgroundTint="@color/light_gray_background"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <github.mik0war.entity.CustomTextView
+    <github.mik0war.pizzadeliveryapp.core.CustomTextView
         android:id="@+id/objectName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="22dp"
         android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/imageHolder"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/imageHolder"
+        app:layout_constraintStart_toEndOf="@id/imageHolder"
         tools:text="Жареная картошка" />
+
+    <github.mik0war.pizzadeliveryapp.core.CustomTextView
+        android:id="@+id/descriptionView"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:singleLine="false"
+        android:textColor="@color/light_gray"
+        android:textSize="14sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/objectName"
+        app:layout_constraintTop_toBottomOf="@id/objectName"
+        tools:text="Жареная картошка шгнекенгшщшгненгшщшгненгшлорипмсапнгольтимпнготимпротимпрроjhgfchjklhgfdjkhvgklhjgghkj" />
+
+    <github.mik0war.pizzadeliveryapp.core.CustomButton
+        android:id="@+id/priceView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/selected_red"
+        android:textSize="14sp"
+        android:background="@drawable/pay_button_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="от 365 р" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

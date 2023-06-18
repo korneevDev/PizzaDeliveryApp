@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import github.mik0war.entity.CustomTextView
+import github.mik0war.pizzadeliveryapp.core.CustomTextView
 import github.mik0war.pizzadeliveryapp.R
 import github.mik0war.pizzadeliveryapp.core.UIEntity
+import github.mik0war.pizzadeliveryapp.recycler_list.presentation.TransferDataGetter
 
 abstract class RecyclerViewAdapter<T : UIEntity<T>, E, V : View>(
     private val internetDataLiveData: GetList<T>,
@@ -96,7 +97,7 @@ sealed class ViewHolder<T : UIEntity<T>, V : View>(
             setOnObjectClickListener(`object`, uiModel)
         }
 
-        protected fun setOnObjectClickListener(view: View, uiModel: T){
+        private fun setOnObjectClickListener(view: View, uiModel: T){
             view.setOnClickListener {
                 onClickListener.invoke(transferDataGetter.getTransferData(uiModel, it))
             }

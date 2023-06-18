@@ -1,6 +1,5 @@
 package github.mik0war.pizzadeliveryapp.core
 
-import github.mik0war.entity.CustomTextView
 import github.mik0war.pizzadeliveryapp.core.mapper.MapperTo
 
 interface Entity {

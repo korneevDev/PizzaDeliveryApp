@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <github.mik0war.entity.CustomTextView
+    <github.mik0war.pizzadeliveryapp.core.CustomTextView
         android:id="@+id/objectName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import github.mik0war.pizzadeliveryapp.PizzaDeliveryApp
 import github.mik0war.pizzadeliveryapp.R
 import github.mik0war.pizzadeliveryapp.core.dishDataModel.DishUIModel
 import github.mik0war.pizzadeliveryapp.dish.presentation.CategoryRecyclerViewAdapter
 import github.mik0war.pizzadeliveryapp.dish.presentation.CategoryTransferDataGetter
+import github.mik0war.pizzadeliveryapp.dish.presentation.PriceFormatter
 import github.mik0war.pizzadeliveryapp.recycler_list.presentation.GetDataListViewModel
 import github.mik0war.recycler_list.presentation.ImageLoader
 import javax.inject.Inject
@@ -35,7 +36,6 @@ class HomeFragment : Fragment() {
 
         val list = view.findViewById<RecyclerView>(R.id.objectsList)
 
-        list.layoutManager = GridLayoutManager(requireContext(), 3)
         list.adapter = setupAdapter()
 
         dishViewModel.getDataList()
@@ -48,8 +48,17 @@ class HomeFragment : Fragment() {
         val adapter = CategoryRecyclerViewAdapter(
             dishViewModel,
             ImageLoader.Base(),
-            CategoryTransferDataGetter()
+            CategoryTransferDataGetter(),
+            PriceFormatter.Base(requireContext())
         )
+
+        val onSuccessListener: (name: Int) -> Unit = {
+            Toast.makeText(
+                requireContext(),
+                requireContext().getString(R.string.price_toast, it),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
 
         val onErrorClockListener: () -> Unit = {
@@ -57,6 +66,7 @@ class HomeFragment : Fragment() {
         }
 
         adapter.onErrorClickListener = onErrorClockListener
+        adapter.onSuccessClickListener = onSuccessListener
 
         dishViewModel.observe(this) {
             adapter.update()

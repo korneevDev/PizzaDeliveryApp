@@ -1,7 +1,9 @@
 package github.mik0war.pizzadeliveryapp.core.dishDataModel
 
-import github.mik0war.entity.CustomTextView
+import github.mik0war.entity.CustomTextViewInterface
+import github.mik0war.pizzadeliveryapp.core.CustomTextView
 import github.mik0war.pizzadeliveryapp.core.UIEntity
+import github.mik0war.pizzadeliveryapp.dish.presentation.PriceFormatter
 
 sealed interface DishUIModel : UIEntity<DishUIModel> {
     override fun equalsId(other: DishUIModel) = false
@@ -20,6 +22,18 @@ sealed interface DishUIModel : UIEntity<DishUIModel> {
         override fun show(nameView: CustomTextView) {
             nameView.set(name)
         }
+
+        fun getCurrentPrice() = price
+
+        fun show(
+            priceFormatter: PriceFormatter,
+            priceView: CustomTextViewInterface,
+            descriptionView: CustomTextViewInterface
+        ) {
+            descriptionView.set(description)
+            priceView.set(priceFormatter.formatPrice(price))
+        }
+
         override fun getUrl() = imageUrl
     }
 

@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">PizzaDeliveryApp</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Menu</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_cart">Cart</string>
     <string name="error_message_no_connection">No connection</string>
     <string name="error_message_service_unavailable">Service unavailable</string>
     <string name="error_message_unknown_error">Unknown exception</string>
+    <string name="price_format">from %1$d r</string>
+    <string name="price_toast">add dish of %1$d</string>
 </resources>

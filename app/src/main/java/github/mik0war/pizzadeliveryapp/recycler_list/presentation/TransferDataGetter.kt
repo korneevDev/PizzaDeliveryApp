@@ -1,4 +1,4 @@
-package github.mik0war.recycler_list.presentation
+package github.mik0war.pizzadeliveryapp.recycler_list.presentation
 
 import android.view.View
 import github.mik0war.pizzadeliveryapp.core.UIEntity
