@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import github.mik0war.entity.ColorResourceProvider
 import github.mik0war.pizzadeliveryapp.PizzaDeliveryApp
 import github.mik0war.pizzadeliveryapp.R
+import github.mik0war.pizzadeliveryapp.feature.advertising.presentation.AdvertisingRecyclerViewAdapter
 import github.mik0war.pizzadeliveryapp.feature.dish.dishDataModel.DishUIModel
 import github.mik0war.pizzadeliveryapp.feature.dish.presentation.CategoryRecyclerViewAdapter
 import github.mik0war.pizzadeliveryapp.feature.dish.presentation.DishTransferDataGetter
@@ -53,6 +55,16 @@ class HomeFragment : Fragment() {
         tagsList.adapter = setupTagsAdapter(tagViewModel)
 
         tagViewModel.setTagsList()
+
+        val advertisingList = view.findViewById<RecyclerView>(R.id.advertisingList)
+        advertisingList.adapter = AdvertisingRecyclerViewAdapter(
+            listOf(
+                getDrawable(requireContext(), R.drawable.promo_1)!!,
+                getDrawable(requireContext(), R.drawable.promo_2)!!,
+                getDrawable(requireContext(), R.drawable.promo_3)!!,
+                getDrawable(requireContext(), R.drawable.promo_4)!!
+            )
+        )
     }
 
     private fun setupTagsAdapter(tagsViewModel: TagsViewModel): TagsRecyclerViewAdapter {

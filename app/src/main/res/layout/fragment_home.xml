@@ -17,7 +17,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/advertisingList"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="?attr/actionBarSize"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal" />
 
