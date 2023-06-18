@@ -1,6 +1,5 @@
 package github.mik0war.pizzadeliveryapp.recycler_list.data
 
-import android.util.Log
 import github.mik0war.pizzadeliveryapp.di.IODispatcher
 import github.mik0war.pizzadeliveryapp.recycler_list.domain.GetDataListRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -13,7 +12,7 @@ class GetDataListRepositoryImpl<T> @Inject constructor(
     @IODispatcher private val dispatcher: CoroutineDispatcher
 ) : GetDataListRepository<T> {
 
-    override suspend fun getCategoryList(): List<T> =
+    override suspend fun getObjectsList(): List<T> =
         withContext(dispatcher) {
             try {
                 return@withContext cloudDataSource.getListData()

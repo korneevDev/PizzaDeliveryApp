@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import github.mik0war.pizzadeliveryapp.dish.data.cache.DishDataBase
+import github.mik0war.pizzadeliveryapp.feature.dish.data.cache.DishDataBase
+import github.mik0war.pizzadeliveryapp.feature.tags.data.cache.TagDataBase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
@@ -40,8 +41,15 @@ class CoreModule {
 
     @Singleton
     @Provides
-    fun provideRoom(context: Context): DishDataBase = Room.databaseBuilder(
+    fun provideDishRoom(context: Context): DishDataBase = Room.databaseBuilder(
         context,
         DishDataBase::class.java, "database-dish"
+    ).build()
+
+    @Singleton
+    @Provides
+    fun provideTagRoom(context: Context): TagDataBase = Room.databaseBuilder(
+        context,
+        TagDataBase::class.java, "database-tag"
     ).build()
 }

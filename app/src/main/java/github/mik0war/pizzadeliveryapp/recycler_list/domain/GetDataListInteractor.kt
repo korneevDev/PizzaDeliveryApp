@@ -15,7 +15,7 @@ interface GetDataListInteractor<R> {
     ) : GetDataListInteractor<R> {
         override suspend fun getDataList(tags: List<String>): List<R> =
             try {
-                repository.getCategoryList()
+                repository.getObjectsList()
                     .map { mapper.map(it) }
             } catch (e: Exception) {
                 listOf(exceptionHandler.mapExceptionToModel(e))

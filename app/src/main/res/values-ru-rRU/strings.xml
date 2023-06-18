@@ -9,4 +9,6 @@
     <string name="error_message_unknown_error">Неизвестная ошибка</string>
     <string name="price_format">от %1$d р</string>
     <string name="price_toast">Добавлено блюдо ценой %1$d р</string>
+    <string name="tag_toast">Выбрана категория %1$s</string>
+    <string name="moscow">Москва</string>
 </resources>

@@ -13,7 +13,7 @@
     <color name="light_gray">#AAAAAD</color>
     <color name="light_gray_background">#F8F7F5</color>
     <color name="light_gray_buttons">#EFEEEC</color>
-    <color name="selected_blue">#3364E0</color>
+    <color name="selected_background">#33FD3A69</color>
     <color name="selected_red">#FD3A69</color>
 
 </resources>

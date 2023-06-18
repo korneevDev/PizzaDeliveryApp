@@ -10,19 +10,19 @@ import github.mik0war.recycler_list.presentation.ObserveLiveData
 import javax.inject.Inject
 
 interface GetDataListLiveData<T: UIEntity<T>> : ObserveLiveData<List<T>>, GetList<T> {
-    fun updateLivaData(categoryList: List<T>)
+    fun updateLivaData(dataList: List<T>)
 
     class Base<T: UIEntity<T>> @Inject constructor(): GetDataListLiveData<T> {
         private val dataList = MutableLiveData<List<T>>()
         private lateinit var diffResult: DiffUtil.DiffResult
 
-        override fun updateLivaData(categoryList: List<T>) {
+        override fun updateLivaData(dataList: List<T>) {
             val callBack = GetDataListDiffUtilCallback(
                 this.dataList.value ?: emptyList(),
-                categoryList
+                dataList
             )
             diffResult = DiffUtil.calculateDiff(callBack)
-            this.dataList.value = categoryList
+            this.dataList.value = dataList
         }
 
         override fun observe(

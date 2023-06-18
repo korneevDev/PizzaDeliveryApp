@@ -8,4 +8,6 @@
     <string name="error_message_unknown_error">Unknown exception</string>
     <string name="price_format">from %1$d r</string>
     <string name="price_toast">add dish of %1$d</string>
+    <string name="tag_toast">Selected category %1$s</string>
+    <string name="moscow">Moscow</string>
 </resources>

@@ -92,7 +92,8 @@ sealed class ViewHolder<T : UIEntity<T>, V : View>(
         private val `object`: V = itemView.findViewById(buttonId)
         override fun bind(uiModel: T) {
             super.bind(uiModel)
-            imageLoader.loadImage(uiModel.getUrl(), imageView)
+            if(uiModel.getUrl().isNotEmpty())
+                imageLoader.loadImage(uiModel.getUrl(), imageView)
 
             setOnObjectClickListener(`object`, uiModel)
         }
