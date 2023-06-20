@@ -27,6 +27,8 @@ abstract class RecyclerViewAdapter<T : UIEntity<T>, E, V : View>(
     protected abstract fun getSuccessLayout(): Int
 
     protected abstract fun getClickableId(): Int
+
+    protected open fun getErrorClickableId(): Int = R.id.objectName
     protected open fun buildSuccessViewHolder(
         imageLoader: ImageLoader,
         buttonId: Int,
@@ -52,7 +54,7 @@ abstract class RecyclerViewAdapter<T : UIEntity<T>, E, V : View>(
         val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
 
         return if (emptyList)
-            ViewHolder.Error(getClickableId(), view, onErrorClickListener)
+            ViewHolder.Error(getErrorClickableId(), view, onErrorClickListener)
         else buildSuccessViewHolder(
             imageLoader,
             getClickableId(),
@@ -110,7 +112,7 @@ sealed class ViewHolder<T : UIEntity<T>, V : View>(
         view: View,
         private val reloadListener: (() -> Unit)?
     ) : ViewHolder<T, V>(view) {
-        private lateinit var `object`: V
+        private lateinit var `object`: CustomTextView
         override fun bind(uiModel: T) {
             super.bind(uiModel)
 

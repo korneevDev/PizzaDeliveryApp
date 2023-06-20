@@ -9,13 +9,12 @@ class DishCacheGetDataListDataSource @Inject constructor(
     private val cacheDAO: DishCacheDAO,
     private val mapper: DataMapper<DishCacheEntity, DishDataModel>,
     private val reverseMapper: DataMapper<DishDataModel, DishCacheEntity>
-) : CacheGetDataListDataSource<DishDataModel> {
+) : CacheGetDataListDataSource.Abstract<DishDataModel>() {
     override suspend fun saveListData(list: List<DishDataModel>) {
         cacheDAO.clearTable()
         list.forEach { cacheDAO.saveDish(reverseMapper.map(it)) }
     }
 
-    override suspend fun getListData(): List<DishDataModel> =
+    override suspend fun getDataFromCache(): List<DishDataModel> =
         cacheDAO.getCachedData().map { mapper.map(it) }
-
 }

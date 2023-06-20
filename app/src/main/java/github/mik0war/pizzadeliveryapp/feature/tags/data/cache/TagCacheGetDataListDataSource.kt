@@ -9,13 +9,13 @@ class TagCacheGetDataListDataSource @Inject constructor(
     private val cacheDAO: TagCacheDAO,
     private val mapper: DataMapper<TagCacheEntity, TagDataModel>,
     private val reverseMapper: DataMapper<TagDataModel, TagCacheEntity>
-) : CacheGetDataListDataSource<TagDataModel> {
+) : CacheGetDataListDataSource.Abstract<TagDataModel>() {
     override suspend fun saveListData(list: List<TagDataModel>) {
         cacheDAO.clearTable()
         list.forEach { cacheDAO.saveDish(reverseMapper.map(it)) }
     }
 
-    override suspend fun getListData(): List<TagDataModel> =
+    override suspend fun getDataFromCache(): List<TagDataModel> =
         cacheDAO.getCachedData().map { mapper.map(it) }
 
 }

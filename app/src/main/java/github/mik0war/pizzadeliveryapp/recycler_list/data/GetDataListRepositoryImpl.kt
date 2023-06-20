@@ -16,11 +16,11 @@ class GetDataListRepositoryImpl<T> @Inject constructor(
         withContext(dispatcher) {
             try {
                 return@withContext cloudDataSource.getListData()
-         //           .also { cacheDataSource.saveListData(it) }
+                    .also { cacheDataSource.saveListData(it) }
             } catch (cloudException: Exception) {
                 try {
                     return@withContext cacheDataSource.getListData()
-                } catch (cacheException: java.lang.Exception){
+                } catch (cacheException: Exception){
                     throw cloudException
                 }
             }

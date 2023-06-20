@@ -77,10 +77,15 @@ class HomeFragment : Fragment() {
             ).show()
         }
 
+        val onErrorTagClickListener: (tag: Tag) -> Unit = {
+            tagsViewModel.setTagsList()
+        }
+
         val adapter = TagsRecyclerViewAdapter(
             tagsViewModel,
             ColorResourceProvider.Base(requireContext()),
-            onChangeTagClickListener
+            onChangeTagClickListener,
+            onErrorTagClickListener
         )
 
         tagsViewModel.observe(this){

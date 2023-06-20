@@ -25,7 +25,7 @@ interface TagsViewModel: ObserveLiveData<List<Tag>>,
     ): ViewModel(), TagsViewModel {
         override fun setTagsList() = viewModelScope.launch {
             liveData.updateTagsList(interactor.getTagsList())
-            if(liveData.getList().isNotEmpty())
+            if(liveData.getList().isNotEmpty() && liveData.getList()[0] !is Tag.Error)
                 updateTag(liveData.getList()[0])
         }
 

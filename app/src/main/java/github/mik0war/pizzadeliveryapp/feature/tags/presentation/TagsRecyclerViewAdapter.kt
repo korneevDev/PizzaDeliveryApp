@@ -14,7 +14,8 @@ import github.mik0war.recycler_list.presentation.GetList
 class TagsRecyclerViewAdapter(
     private val getList: GetList<Tag>,
     private val colorResourceProvider: ColorResourceProvider,
-    private val onChangeClickListener: (tag: Tag) -> Unit
+    private val onChangeClickListener: (tag: Tag) -> Unit,
+    private val onErrorClickListener: (tag: Tag) -> Unit,
 ) : RecyclerView.Adapter<TagViewHolder>() {
 
     fun update() {
@@ -29,7 +30,7 @@ class TagsRecyclerViewAdapter(
         return when (viewType) {
             0 -> TagViewHolder.Selected(colorResourceProvider, onChangeClickListener, view)
             1 -> TagViewHolder.Common(colorResourceProvider, onChangeClickListener, view)
-            2 -> TagViewHolder.Error(colorResourceProvider, view)
+            2 -> TagViewHolder.Error(colorResourceProvider, onErrorClickListener, view)
             else -> throw IllegalStateException()
         }
     }
@@ -86,8 +87,13 @@ sealed class TagViewHolder(
 
     class Error(
         private val colorResourceProvider: ColorResourceProvider,
+        onClickListener: (tag: Tag) -> Unit,
         view: View
-    ) : TagViewHolder(view=view) {
+    ) : TagViewHolder(onClickListener, view) {
+        override fun bind(tag: Tag) {
+            super.bind(tag)
+        }
+
         override fun getColor() = colorResourceProvider.getColor(R.color.light_gray_background)
         override fun getTextColor() = colorResourceProvider.getColor(R.color.black_transparent_65)
     }
