@@ -33,7 +33,7 @@ class CoreModule {
         val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
         return Retrofit.Builder()
-            .baseUrl("https://pizzaallapala.p.rapidapi.com/")
+            .baseUrl("https://themealdb.com/api/json/v1/1/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

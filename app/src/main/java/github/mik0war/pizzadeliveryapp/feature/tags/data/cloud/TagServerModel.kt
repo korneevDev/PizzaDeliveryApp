@@ -6,16 +6,16 @@ import github.mik0war.pizzadeliveryapp.core.mapper.MapperTo
 import github.mik0war.pizzadeliveryapp.core.mapper.TagMapperTo
 
 data class TagsListServerModel(
-    @SerializedName("data")
+    @SerializedName("categories")
     private val productList: List<TagServerModel>
 ) {
     fun getList() = productList
 }
 
 data class TagServerModel(
-    @SerializedName("id")
+    @SerializedName("idCategory")
     private val id: Int,
-    @SerializedName("nombre")
+    @SerializedName("strCategory")
     private val name: String
 ) : Entity {
 
