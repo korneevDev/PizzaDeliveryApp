@@ -13,7 +13,7 @@ import javax.inject.Inject
 class DishListAdapter @Inject constructor(
     private val itemList: GetList<DishUIModel>,
     private val imageLoader: ImageLoader,
-    private val dialogClickLambda: (uiMapper : DishUIMapper) -> Unit
+    private val dialogClickLambda: (dishUIModel : DishUIModel, uiMapper: DishUIMapper) -> Unit
 ) : RecyclerView.Adapter<DishViewHolder>(){
 
     fun update(){

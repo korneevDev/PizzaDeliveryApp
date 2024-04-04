@@ -1,5 +1,6 @@
 package github.mik0war.pizzadeliveryapp.presentation
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import github.mik0war.pizzadeliveryapp.core.ImageLoader
 import github.mik0war.pizzadeliveryapp.databinding.FragmentMenuBinding
 import github.mik0war.pizzadeliveryapp.dish.presentation.DishListAdapter
 import github.mik0war.pizzadeliveryapp.dish.presentation.DishUIMapper
+import github.mik0war.pizzadeliveryapp.dish.presentation.DishUIModel
 import github.mik0war.pizzadeliveryapp.dish.presentation.DishViewModel
 import github.mik0war.pizzadeliveryapp.feature.advertising.presentation.AdvertisingRecyclerViewAdapter
 
@@ -35,9 +37,14 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val onSuccessClick: (uiMapper: DishUIMapper) -> Unit = {
-            dishViewModel.showExtendedData()
-        }
+        val onSuccessClick: (dishUIModel: DishUIModel, uiMapper: DishUIMapper) -> Unit =
+            { dishUIModel, uiMapper ->
+                dishViewModel.getExtendedData(
+                    dishUIModel.getEntityId(),
+                    uiMapper,
+                    Dialog(requireContext())
+                )
+            }
 
         val dishListAdapter = DishListAdapter(
             dishViewModel,

@@ -7,8 +7,11 @@ import dagger.hilt.components.SingletonComponent
 import github.mik0war.pizzadeliveryapp.core.ImageLoader
 import github.mik0war.pizzadeliveryapp.core.StringResourceProvider
 import github.mik0war.pizzadeliveryapp.dish.data.DishGetBaseListRepositoryImpl
+import github.mik0war.pizzadeliveryapp.dish.data.DishLoadExtendedDataRepositoryImpl
 import github.mik0war.pizzadeliveryapp.dish.domain.Communication
 import github.mik0war.pizzadeliveryapp.dish.domain.DishGetListRepository
+import github.mik0war.pizzadeliveryapp.dish.domain.DishLoadExtendedDataRepository
+import github.mik0war.pizzadeliveryapp.dish.presentation.DishDialogConfigurator
 import github.mik0war.pizzadeliveryapp.dish.presentation.DishUIModel
 
 @Module
@@ -19,11 +22,16 @@ abstract class DishBindsModule {
     abstract fun bindImageLoader(loader: ImageLoader.Base): ImageLoader
 
     @Binds
+    abstract fun bindDialogConf(conf: DishDialogConfigurator.Base) : DishDialogConfigurator
+    @Binds
     abstract fun bindGetDishDataListRepository(
         repository: DishGetBaseListRepositoryImpl
     ): DishGetListRepository
 
-
+    @Binds
+    abstract fun bindGetDishExtendedDataListRepository(
+        repository: DishLoadExtendedDataRepositoryImpl
+    ): DishLoadExtendedDataRepository
 
     @Binds
     abstract fun bindCommunication(

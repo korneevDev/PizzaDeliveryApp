@@ -14,9 +14,10 @@ class DishUIMapper @Inject constructor(
     private val errorBinding: DishEmptyObjectBinding,
     private val extendedDishObjectBinding: ExtendedDishObjectBinding,
     private val imageLoader: ImageLoader,
-    private val dialogClickLambda: (uiMapper : DishUIMapper) -> Unit
-) : UIMapper {
+    private val dialogClickLambda: (dishUIModel: DishUIModel, uiMapper: DishUIMapper) -> Unit
+) : UIMapper<ExtendedDishObjectBinding> {
     override fun getSuccessRoot(): View = successBinding.root
+    override fun getDialogBinding() = extendedDishObjectBinding
 
     override fun getErrorRoot(): View = errorBinding.root
 
@@ -41,7 +42,10 @@ class DishUIMapper @Inject constructor(
         imageLoader.loadImage(imageURL, extendedDishObjectBinding.imageHolder)
 
         successBinding.root.setOnClickListener {
-            dialogClickLambda.invoke(this)
+            dialogClickLambda.invoke(
+                DishUIModel.Base(id, dishName, tag, imageURL, ingredients),
+                this
+            )
         }
 
     }

@@ -40,5 +40,4 @@ class DishLoadExtendedDataRepositoryImpl @Inject constructor(
     override suspend fun getExtendedData(id: String): DishDataModel = withContext(dispatchersController.io()){
         return@withContext cacheDataSource.getExtendedData(id)
     }
-
 }

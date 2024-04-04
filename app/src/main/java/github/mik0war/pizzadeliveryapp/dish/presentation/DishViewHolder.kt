@@ -2,20 +2,19 @@ package github.mik0war.pizzadeliveryapp.dish.presentation
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import github.mik0war.pizzadeliveryapp.core.UIMapper
 
 sealed class DishViewHolder(
-    private val uiMapper: UIMapper,
+    private val uiMapper: DishUIMapper,
     view: View) : RecyclerView.ViewHolder(view){
     fun bind(uiModel: DishUIModel){
         uiModel.map(uiMapper)
     }
 
     class Success(
-        uiMapper: UIMapper
+        uiMapper: DishUIMapper
     ) : DishViewHolder(uiMapper, uiMapper.getSuccessRoot())
 
     class Error(
-        uiMapper: UIMapper
+        uiMapper: DishUIMapper
     ) : DishViewHolder(uiMapper, uiMapper.getErrorRoot())
 }
