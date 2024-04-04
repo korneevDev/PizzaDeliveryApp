@@ -11,4 +11,7 @@
     <string name="price_toast">Добавлено блюдо ценой %1$d р</string>
     <string name="tag_toast">Выбрана категория %1$s</string>
     <string name="moscow">Москва</string>
+    <string name="buy">Купить</string>
+    <string name="dish_picture">Картинка блюда</string>
+    <string name="error_picture">Картинка ошибки</string>
 </resources>

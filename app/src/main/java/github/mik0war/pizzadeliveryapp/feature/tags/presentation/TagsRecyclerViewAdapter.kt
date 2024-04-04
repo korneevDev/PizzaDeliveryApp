@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import github.mik0war.entity.ColorResourceProvider
+import github.mik0war.pizzadeliveryapp.core.ColorResourceProvider
 import github.mik0war.pizzadeliveryapp.R
 import github.mik0war.pizzadeliveryapp.core.CustomTextView
 import github.mik0war.pizzadeliveryapp.feature.tags.dataModel.Tag
-import github.mik0war.recycler_list.presentation.GetList
+import github.mik0war.pizzadeliveryapp.core.GetList
 
 class TagsRecyclerViewAdapter(
     private val getList: GetList<Tag>,

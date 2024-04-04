@@ -16,4 +16,5 @@
     <color name="selected_background">#33FD3A69</color>
     <color name="selected_red">#FD3A69</color>
 
+    <color name="unselected_ad">#1AFFFFFF</color>
 </resources>

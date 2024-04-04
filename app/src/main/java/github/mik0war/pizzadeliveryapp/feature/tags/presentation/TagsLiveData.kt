@@ -6,8 +6,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DiffUtil
 import github.mik0war.dish.tags.presentation.TagsDiffUtilCallBack
 import github.mik0war.pizzadeliveryapp.feature.tags.dataModel.Tag
-import github.mik0war.recycler_list.presentation.GetList
-import github.mik0war.recycler_list.presentation.ObserveLiveData
+import github.mik0war.pizzadeliveryapp.core.GetList
+import github.mik0war.pizzadeliveryapp.core.ObserveLiveData
 import javax.inject.Inject
 
 interface TagsLiveData : ObserveLiveData<List<Tag>>,

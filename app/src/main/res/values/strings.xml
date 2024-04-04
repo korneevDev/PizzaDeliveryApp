@@ -10,4 +10,7 @@
     <string name="price_toast">add dish of %1$d</string>
     <string name="tag_toast">Selected category %1$s</string>
     <string name="moscow">Moscow</string>
+    <string name="buy">Buy</string>
+    <string name="dish_picture">Dish picture</string>
+    <string name="error_picture">Error picture</string>
 </resources>

@@ -1,9 +1,9 @@
 package github.mik0war.pizzadeliveryapp.feature.tags.domain
 
-import github.mik0war.entity.ExceptionHandler
-import github.mik0war.entity.NoConnectionException
-import github.mik0war.entity.ServiceUnavailableException
-import github.mik0war.entity.StringResourceProvider
+import github.mik0war.pizzadeliveryapp.core.ExceptionHandler
+import github.mik0war.pizzadeliveryapp.core.NoConnectionException
+import github.mik0war.pizzadeliveryapp.core.ServiceUnavailableException
+import github.mik0war.pizzadeliveryapp.core.StringResourceProvider
 import github.mik0war.pizzadeliveryapp.R
 import github.mik0war.pizzadeliveryapp.feature.tags.dataModel.Tag
 import javax.inject.Inject

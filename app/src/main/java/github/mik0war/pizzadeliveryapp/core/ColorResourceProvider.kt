@@ -1,4 +1,4 @@
-package github.mik0war.entity
+package github.mik0war.pizzadeliveryapp.core
 
 import android.content.Context
 import androidx.annotation.ColorRes
