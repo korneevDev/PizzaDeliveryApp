@@ -24,9 +24,12 @@ interface DishDialogConfigurator {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
+
+            binding.root.setOnClickListener {
+                dialog.dismiss()
+            }
+
             return dialog
         }
     }
-    //TODO BUG WITH SECOND CREATING DIALOG
-    //TODO CAN'T DISMISS DIALOG
 }

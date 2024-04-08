@@ -32,20 +32,27 @@
         app:layout_constraintStart_toEndOf="@id/imageHolder"
         tools:text="Жареная картошка" />
 
-    <github.mik0war.pizzadeliveryapp.core.CustomTextView
-        android:id="@+id/descriptionView"
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:singleLine="false"
-        android:textColor="@color/light_gray"
-        android:textSize="14sp"
-        android:layout_marginStart="22dp"
+        android:id="@+id/descriptionViewLayout"
+        android:layout_height="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageHolder"
         app:layout_constraintTop_toBottomOf="@id/objectName"
-        tools:text="Жареная картошка шгнекенгшщшгненгшщшгненгшлорипмсапнгольтимпнготимпротимпрроjhgfchjklhgfdjkhvgklhjgghkj" />
+        android:layout_marginStart="22dp">
+        <github.mik0war.pizzadeliveryapp.core.CustomTextView
+            android:id="@+id/descriptionView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:singleLine="false"
+            android:textColor="@color/light_gray"
+            android:textSize="14sp"
 
+
+            tools:text="Жареная картошка шгнекенгшщшгненгшщшгненгшлорипмсапнгольтимпнготимпротимпрроjhgfchjklhgfdjkhvgklhjgghkj" />
+
+    </ScrollView>
     <github.mik0war.pizzadeliveryapp.core.CustomTextView
         android:id="@+id/youtube_link"
         android:layout_width="wrap_content"
@@ -92,7 +99,8 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
 
         android:background="@drawable/pay_button_background"
 
@@ -100,9 +108,10 @@
         android:text="@string/buy"
         android:textColor="@color/selected_red"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/area"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@id/area"
 
+     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

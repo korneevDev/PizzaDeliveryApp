@@ -1,5 +1,6 @@
 package github.mik0war.pizzadeliveryapp.feature.dish.presentation
 
+import android.app.Dialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,8 @@ import javax.inject.Inject
 class DishListAdapter @Inject constructor(
     private val itemList: GetList<DishUIModel>,
     private val imageLoader: ImageLoader,
-    private val dialogClickLambda: (dishUIModel : DishUIModel, uiMapper: DishUIMapper) -> Unit
+    private val dialog: Dialog,
+    private val dialogClickLambda: (dialog: Dialog, dishUIModel : DishUIModel, uiMapper: DishUIMapper) -> Unit
 ) : RecyclerView.Adapter<DishViewHolder>(){
 
     fun update(){
@@ -25,6 +27,7 @@ class DishListAdapter @Inject constructor(
             DishEmptyObjectBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             ExtendedDishObjectBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             imageLoader,
+            dialog,
             dialogClickLambda
         )
         val holder =  when (viewType) {

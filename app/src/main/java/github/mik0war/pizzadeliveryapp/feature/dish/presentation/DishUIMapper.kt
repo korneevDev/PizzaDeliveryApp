@@ -1,5 +1,6 @@
 package github.mik0war.pizzadeliveryapp.feature.dish.presentation
 
+import android.app.Dialog
 import android.view.View
 import github.mik0war.pizzadeliveryapp.core.ImageLoader
 import github.mik0war.pizzadeliveryapp.databinding.DishEmptyObjectBinding
@@ -21,7 +22,8 @@ class DishUIMapper @Inject constructor(
     private val errorBinding: DishEmptyObjectBinding,
     private val extendedDishObjectBinding: ExtendedDishObjectBinding,
     private val imageLoader: ImageLoader,
-    private val dialogClickLambda: (dishUIModel: DishUIModel, uiMapper: DishUIMapper) -> Unit
+    private val dialog: Dialog,
+    private val dialogClickLambda: (dialog: Dialog, dishUIModel: DishUIModel, uiMapper: DishUIMapper) -> Unit
 ) : UIMapper<ExtendedDishObjectBinding> {
     override fun getSuccessRoot(): View = successBinding.root
     override fun getDialogBinding() = extendedDishObjectBinding
@@ -49,7 +51,9 @@ class DishUIMapper @Inject constructor(
         imageLoader.loadImage(imageURL, extendedDishObjectBinding.imageHolder)
 
         successBinding.root.setOnClickListener {
+            dialog.dismiss()
             dialogClickLambda.invoke(
+                dialog,
                 DishUIModel.Base(id, dishName, tag, imageURL, ingredients),
                 this
             )

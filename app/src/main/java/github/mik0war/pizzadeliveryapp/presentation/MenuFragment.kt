@@ -16,8 +16,6 @@ import github.mik0war.pizzadeliveryapp.core.ImageLoader
 import github.mik0war.pizzadeliveryapp.databinding.FragmentMenuBinding
 import github.mik0war.pizzadeliveryapp.feature.advertising.presentation.AdvertisingRecyclerViewAdapter
 import github.mik0war.pizzadeliveryapp.feature.dish.presentation.DishListAdapter
-import github.mik0war.pizzadeliveryapp.feature.dish.presentation.DishUIMapper
-import github.mik0war.pizzadeliveryapp.feature.dish.presentation.DishUIModel
 import github.mik0war.pizzadeliveryapp.feature.dish.presentation.DishViewModel
 import github.mik0war.pizzadeliveryapp.feature.tags.presentation.TagViewModel
 import github.mik0war.pizzadeliveryapp.feature.tags.presentation.TagsRecyclerViewAdapter
@@ -41,20 +39,18 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val onSuccessClick: (dishUIModel: DishUIModel, uiMapper: DishUIMapper) -> Unit =
-            { dishUIModel, uiMapper ->
-                dishViewModel.getExtendedData(
-                    dishUIModel.getEntityId(),
-                    uiMapper,
-                    Dialog(requireContext())
-                )
-            }
-
         val dishListAdapter = DishListAdapter(
             dishViewModel,
             ImageLoader.Base(),
-            onSuccessClick
-        )
+            Dialog(requireContext())
+        ) { dialog, dishUIModel, uiMapper ->
+            dishViewModel.getExtendedData(
+                dishUIModel.getEntityId(),
+                uiMapper,
+                dialog
+            )
+        }
+
         dishViewModel.observe(this) {
             dishListAdapter.update()
         }
@@ -65,12 +61,12 @@ class MenuFragment : Fragment() {
         val tagsAdapter = TagsRecyclerViewAdapter(
             tagViewModel,
             ColorResourceProvider.Base(requireContext())
-        ){
+        ) {
             tagViewModel.performClick(it)
             dishViewModel.filter(it)
         }
 
-        tagViewModel.observe(this){
+        tagViewModel.observe(this) {
             tagsAdapter.update()
         }
 
