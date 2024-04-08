@@ -14,4 +14,5 @@
     <string name="buy">Купить</string>
     <string name="dish_picture">Картинка блюда</string>
     <string name="error_picture">Картинка ошибки</string>
+    <string name="tag_all">Все</string>
 </resources>

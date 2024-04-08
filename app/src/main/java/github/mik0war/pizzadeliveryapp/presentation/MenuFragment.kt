@@ -11,13 +11,16 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import github.mik0war.pizzadeliveryapp.R
+import github.mik0war.pizzadeliveryapp.core.ColorResourceProvider
 import github.mik0war.pizzadeliveryapp.core.ImageLoader
 import github.mik0war.pizzadeliveryapp.databinding.FragmentMenuBinding
-import github.mik0war.pizzadeliveryapp.dish.presentation.DishListAdapter
-import github.mik0war.pizzadeliveryapp.dish.presentation.DishUIMapper
-import github.mik0war.pizzadeliveryapp.dish.presentation.DishUIModel
-import github.mik0war.pizzadeliveryapp.dish.presentation.DishViewModel
 import github.mik0war.pizzadeliveryapp.feature.advertising.presentation.AdvertisingRecyclerViewAdapter
+import github.mik0war.pizzadeliveryapp.feature.dish.presentation.DishListAdapter
+import github.mik0war.pizzadeliveryapp.feature.dish.presentation.DishUIMapper
+import github.mik0war.pizzadeliveryapp.feature.dish.presentation.DishUIModel
+import github.mik0war.pizzadeliveryapp.feature.dish.presentation.DishViewModel
+import github.mik0war.pizzadeliveryapp.feature.tags.presentation.TagViewModel
+import github.mik0war.pizzadeliveryapp.feature.tags.presentation.TagsRecyclerViewAdapter
 
 
 @AndroidEntryPoint
@@ -27,6 +30,7 @@ class MenuFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val dishViewModel: DishViewModel by viewModels()
+    private val tagViewModel: TagViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,6 +61,21 @@ class MenuFragment : Fragment() {
         binding.objectsList.layoutManager = LinearLayoutManager(requireContext())
         binding.objectsList.adapter = dishListAdapter
         dishViewModel.showData()
+
+        val tagsAdapter = TagsRecyclerViewAdapter(
+            tagViewModel,
+            ColorResourceProvider.Base(requireContext())
+        ){
+            tagViewModel.performClick(it)
+            dishViewModel.filter(it)
+        }
+
+        tagViewModel.observe(this){
+            tagsAdapter.update()
+        }
+
+        binding.tagsListView.adapter = tagsAdapter
+        tagViewModel.showData()
 
 
         binding.advertisingList.adapter = AdvertisingRecyclerViewAdapter(

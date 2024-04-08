@@ -2,7 +2,7 @@ package github.mik0war.pizzadeliveryapp.core
 
 import androidx.recyclerview.widget.DiffUtil
 
-class GetDataListDiffUtilCallback<T: UIEntity>(
+class GetDataListDiffUtilCallback<T: UIModel>(
     private val oldList: List<T>,
     private val newList: List<T>
 ) : DiffUtil.Callback() {

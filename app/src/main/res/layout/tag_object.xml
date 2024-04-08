@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <github.mik0war.pizzadeliveryapp.core.CustomTextView
-        android:id="@id/objectName"
+        android:id="@+id/tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/corner_item_style"

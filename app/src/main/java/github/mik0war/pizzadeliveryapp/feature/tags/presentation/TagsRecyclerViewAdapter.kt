@@ -2,20 +2,17 @@ package github.mik0war.pizzadeliveryapp.feature.tags.presentation
 
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import github.mik0war.pizzadeliveryapp.core.ColorResourceProvider
 import github.mik0war.pizzadeliveryapp.R
-import github.mik0war.pizzadeliveryapp.core.CustomTextView
-import github.mik0war.pizzadeliveryapp.feature.tags.dataModel.Tag
+import github.mik0war.pizzadeliveryapp.core.ColorResourceProvider
 import github.mik0war.pizzadeliveryapp.core.GetList
+import github.mik0war.pizzadeliveryapp.databinding.TagObjectBinding
 
 class TagsRecyclerViewAdapter(
-    private val getList: GetList<Tag>,
+    private val getList: GetList<TagUIModel>,
     private val colorResourceProvider: ColorResourceProvider,
-    private val onChangeClickListener: (tag: Tag) -> Unit,
-    private val onErrorClickListener: (tag: Tag) -> Unit,
+    private val onChangeClickListener: (tagUIModel: TagUIModel) -> Unit,
 ) : RecyclerView.Adapter<TagViewHolder>() {
 
     fun update() {
@@ -24,13 +21,10 @@ class TagsRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.tag_object, parent, false
-        )
+        val binding = TagObjectBinding.inflate(LayoutInflater.from(parent.context))
         return when (viewType) {
-            0 -> TagViewHolder.Selected(colorResourceProvider, onChangeClickListener, view)
-            1 -> TagViewHolder.Common(colorResourceProvider, onChangeClickListener, view)
-            2 -> TagViewHolder.Error(colorResourceProvider, onErrorClickListener, view)
+            0 -> TagViewHolder.Common(colorResourceProvider, onChangeClickListener, binding)
+            1 -> TagViewHolder.Selected(colorResourceProvider, onChangeClickListener, binding)
             else -> throw IllegalStateException()
         }
     }
@@ -43,25 +37,23 @@ class TagsRecyclerViewAdapter(
 
     override fun getItemViewType(position: Int): Int =
         when (getList.getList()[position]) {
-            is Tag.Selected -> 0
-            is Tag.Common -> 1
-            is Tag.Error -> 2
+            is TagUIModel.Common -> 0
+            is TagUIModel.Selected -> 1
         }
 }
 
 sealed class TagViewHolder(
-    private val onClickListener: (tag: Tag) -> Unit = {},
-    view: View
-) : RecyclerView.ViewHolder(view) {
-    private val nameView: CustomTextView = itemView.findViewById(R.id.objectName)
-    open fun bind(tag: Tag) {
-        nameView.set(tag.getTagName())
-        nameView.setOnClickListener {
-            onClickListener.invoke(tag)
+    private val onClickListener: (tagUIModel: TagUIModel) -> Unit = {},
+    private val binding: TagObjectBinding
+) : RecyclerView.ViewHolder(binding.root) {
+    open fun bind(tagUIModel: TagUIModel) {
+        tagUIModel.show(binding.tag)
+        binding.tag.setOnClickListener {
+            onClickListener.invoke(tagUIModel)
         }
-        nameView.backgroundTintList =
+        binding.tag.backgroundTintList =
             ColorStateList.valueOf(getColor())
-        nameView.setTextColor(getTextColor())
+        binding.tag.setTextColor(getTextColor())
     }
 
     protected abstract fun getColor(): Int
@@ -69,32 +61,19 @@ sealed class TagViewHolder(
 
     class Selected(
         private val colorResourceProvider: ColorResourceProvider,
-        onClickListener: (tag: Tag) -> Unit,
-        view: View
-    ) : TagViewHolder(onClickListener, view) {
+        onClickListener: (tagUIModel: TagUIModel) -> Unit,
+        binding: TagObjectBinding
+    ) : TagViewHolder(onClickListener, binding) {
         override fun getColor() = colorResourceProvider.getColor(R.color.selected_background)
         override fun getTextColor() = colorResourceProvider.getColor(R.color.selected_red)
     }
 
     class Common(
         private val colorResourceProvider: ColorResourceProvider,
-        onClickListener: (tag: Tag) -> Unit,
-        view: View
-    ) : TagViewHolder(onClickListener, view) {
+        onClickListener: (tagUIModel: TagUIModel) -> Unit,
+        binding: TagObjectBinding
+    ) : TagViewHolder(onClickListener, binding) {
         override fun getColor() = colorResourceProvider.getColor(R.color.light_gray_background)
         override fun getTextColor() = colorResourceProvider.getColor(R.color.black)
-    }
-
-    class Error(
-        private val colorResourceProvider: ColorResourceProvider,
-        onClickListener: (tag: Tag) -> Unit,
-        view: View
-    ) : TagViewHolder(onClickListener, view) {
-        override fun bind(tag: Tag) {
-            super.bind(tag)
-        }
-
-        override fun getColor() = colorResourceProvider.getColor(R.color.light_gray_background)
-        override fun getTextColor() = colorResourceProvider.getColor(R.color.black_transparent_65)
     }
 }

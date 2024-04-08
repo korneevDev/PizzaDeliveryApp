@@ -13,4 +13,5 @@
     <string name="buy">Buy</string>
     <string name="dish_picture">Dish picture</string>
     <string name="error_picture">Error picture</string>
+    <string name="tag_all">All</string>
 </resources>
